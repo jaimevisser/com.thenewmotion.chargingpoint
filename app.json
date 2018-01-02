@@ -1,0 +1,17 @@
+{
+    "id": "com.thenewmotion.chargingpoint",
+    "sdk": 2,
+    "name": {
+        "en": "The New Motion"
+    },
+    "description": {
+        "en": "Support for EV charging points."
+    },
+    "category": "energy",
+    "version": "0.0.1",
+    "compatibility": ">=1.5.0",
+    "author": {
+        "name": "Jaime Visser",
+        "email": "jaimevisser@gmail.com"
+    }
+}
