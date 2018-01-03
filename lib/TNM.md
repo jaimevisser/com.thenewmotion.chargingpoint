@@ -1,7 +1,7 @@
 # Very simple TheNewMotion API
-'''js
+```js
 const TNM = require('./tnm')
-'''
+```
 
 ## Get all charging points near a location
 Lat, Lon, distance (km)
