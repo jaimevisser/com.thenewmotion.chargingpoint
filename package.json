@@ -2,7 +2,8 @@
     "name": "thenewmotion-chargingpoint",
     "version": "0.0.1",
     "dependencies": {
-        "got": "^8.0.1"
+        "got": "^8.0.1",
+        "new-point-haversine": "0.0.7"
     },
     "description": "Support for EV charging points.",
     "main": "app.js",
