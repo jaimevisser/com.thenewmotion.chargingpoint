@@ -13,5 +13,73 @@
     "author": {
         "name": "Jaime Visser",
         "email": "jaimevisser@gmail.com"
-    }
+    },
+    "permissions": [
+        "homey:manager:geolocation"
+    ],
+    "capabilities": {
+        "connectors": {
+            "type": "number",
+            "title": {
+                "en": "Connectors"
+            },
+            "getable": true,
+            "setable": false,
+            "units": {
+                "en": ""
+            },
+            "min": 0,
+            "max": 30,
+            "step": 1
+        }
+    },
+    "drivers": [
+        {
+            "id": "chargepoint",
+            "name": {
+                "en": "Charge point"
+            },
+            "class": "other",
+            "capabilities": [
+                "connectors.free",
+                "connectors.total"
+            ],
+            "capabilitiesOptions": {
+                "connectors.free": {
+                    "title": {
+                        "en": "Free connectors"
+                    }
+                },
+                "connectors.total": {
+                    "title": {
+                        "en": "Total connectors"
+                    }
+                }
+            },
+            "mobile": {
+                "components": [
+                    {
+                        "id": "icon"
+                    },
+                    {
+                        "id": "sensor",
+                        "capabilities": "connectors.free"
+                    }
+                ]
+            },
+            "pair": [
+                {
+                    "id": "list_devices",
+                    "template": "list_devices",
+                    "navigation": {
+                        "next": "add_devices"
+                    }
+                },
+                {
+                    "id": "add_devices",
+                    "template": "add_devices"
+                }
+            ]
+        }
+    ]
 }
