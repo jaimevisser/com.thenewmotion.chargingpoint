@@ -13,7 +13,7 @@ class ChargepointDriver extends Homey.Driver {
             .then(function (points) {
                 let devices = points.map((point) => {
                     return {
-                        name: point.address.trim() + ", " + point.city.trim() + " (" + point.provider.trim + ")",
+                        name: point.address.trim() + ", " + point.city.trim() + " (" + point.provider.trim() + ")",
                         data: {
                             id: point.id
                         }
