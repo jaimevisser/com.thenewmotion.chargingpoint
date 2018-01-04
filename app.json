@@ -63,7 +63,16 @@
                     },
                     {
                         "id": "sensor",
-                        "capabilities": "connectors.free"
+                        "capabilities": [
+                            "connectors.free",
+                            "connectors.total"
+                        ],
+                        "options": {
+                            "icons": {
+                                "connectors.free": "/assets/plug.svg",
+                                "connectors.total": "/assets/plug.svg"
+                            }
+                        }
                     }
                 ]
             },
