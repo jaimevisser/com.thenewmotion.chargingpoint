@@ -109,9 +109,51 @@
     "flow": {
         "triggers": [
             {
+                "id": "occupied",
+                "title": {
+                    "en": "Chargepoint occupied",
+                    "nl": "Laadpunt bezet"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=chargepoint"
+                    }
+                ]
+            },
+            {
+                "id": "free",
+                "title": {
+                    "en": "Chargepoint free",
+                    "nl": "Laadpunt vrij"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=chargepoint"
+                    }
+                ]
+            },
+            {
+                "id": "changed",
+                "title": {
+                    "en": "Charge session ended or started",
+                    "nl": "Laadsessie gestart of beëindigd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=chargepoint"
+                    }
+                ]
+            },
+            {
                 "id": "start",
                 "title": {
-                    "en": "Charging started",
+                    "en": "Charge session started",
                     "nl": "Laadsessie gestart"
                 },
                 "args": [
@@ -125,7 +167,7 @@
             {
                 "id": "stop",
                 "title": {
-                    "en": "Charging stopped",
+                    "en": "Charge session ended",
                     "nl": "Laadsessie beëindigd"
                 },
                 "args": [

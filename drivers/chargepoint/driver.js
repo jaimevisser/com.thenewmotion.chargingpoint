@@ -8,6 +8,9 @@ class ChargepointDriver extends Homey.Driver {
     onInit() {
         this._flowTriggerStart = new Homey.FlowCardTriggerDevice('start').register()
         this._flowTriggerStop = new Homey.FlowCardTriggerDevice('stop').register()
+        this._flowTriggerChanged = new Homey.FlowCardTriggerDevice('changed').register()
+        this._flowTriggerOccupied = new Homey.FlowCardTriggerDevice('occupied').register()
+        this._flowTriggerFree = new Homey.FlowCardTriggerDevice('free').register()
     }
 
     triggerStart(device) {
@@ -24,6 +27,27 @@ class ChargepointDriver extends Homey.Driver {
             .catch(this.error)
     }
 
+    triggerChanged(device) {
+        this._flowTriggerChanged
+            .trigger(device, {}, {})
+            .then(this.log)
+            .catch(this.error)
+    }
+
+    triggerOccupied(device) {
+        this._flowTriggerOccupied
+            .trigger(device, {}, {})
+            .then(this.log)
+            .catch(this.error)
+    }
+
+    triggerFree(device) {
+        this._flowTriggerFree
+            .trigger(device, {}, {})
+            .then(this.log)
+            .catch(this.error)
+    }
+
     onPairListDevices(data, callback) {
 
         const Location = Homey.ManagerGeolocation
@@ -31,11 +55,16 @@ class ChargepointDriver extends Homey.Driver {
         TNM.near(Location.getLatitude(), Location.getLongitude(), 1)
             .then(function (points) {
                 let devices = points.map((point) => {
+                    let icon = "icon.svg"
+
+                    if (point.provider == "NewMotion" && point.connectors.length == 1) icon = "lolo.svg"
+                    if (point.serial.startsWith("EVB-P")) icon = "evbox.svg"
+                    if (point.serial.startsWith("ICUEVE") && point.connectors.length == 2) icon = "icueve2.svg"
+
                     return {
                         name: point.address.trim() + ", " + point.city.trim() + " (" + point.provider.trim() + ")",
-                        data: {
-                            id: point.id
-                        }
+                        data: point,
+                        icon: icon
                     }
                 })
 
