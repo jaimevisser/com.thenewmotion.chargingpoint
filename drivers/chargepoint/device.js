@@ -9,8 +9,14 @@ class Chargepoint extends Homey.Device {
         this.start_update_loop();
     }
 
+    onDeleted() {
+        if (this._timer) {
+            clearInterval(this._timer)
+        }
+    }
+
     start_update_loop() {
-        setInterval(() => {
+        this._timer = setInterval(() => {
             this.updateDevice();
         }, 300000); //5 min
     }
