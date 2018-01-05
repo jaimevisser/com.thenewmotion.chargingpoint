@@ -22,9 +22,6 @@ class Chargepoint extends Homey.Device {
         let connectors = data.connectors.length
         let free = data.connectors.filter((conn) => conn.status == 0).length
 
-        console.log("connectors: " + connectors)
-        console.log("free: " + free)
-
         await this.setCapabilityValue('connectors.total', connectors)
         await this.setCapabilityValue('connectors.free', free)
     }

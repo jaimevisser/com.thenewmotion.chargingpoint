@@ -5,7 +5,8 @@
         "en": "The New Motion"
     },
     "description": {
-        "en": "Support for EV charging points."
+        "en": "Support for EV charging points.",
+        "nl": "Ondersteuning voor EV laadpunten"
     },
     "category": "energy",
     "version": "0.0.1",
@@ -21,7 +22,8 @@
         "connectors": {
             "type": "number",
             "title": {
-                "en": "Connectors"
+                "en": "Connectors",
+                "nl": "Aansluitingen"
             },
             "getable": true,
             "setable": false,
@@ -31,13 +33,23 @@
             "min": 0,
             "max": 30,
             "step": 1
+        },
+        "occupied": {
+            "type": "boolean",
+            "title": {
+                "en": "Occupied",
+                "nl": "Bezet"
+            },
+            "getable": true,
+            "setable": false
         }
     },
     "drivers": [
         {
             "id": "chargepoint",
             "name": {
-                "en": "Charge point"
+                "en": "Charge point",
+                "nl": "Laadpunt"
             },
             "class": "other",
             "capabilities": [
@@ -47,13 +59,16 @@
             "capabilitiesOptions": {
                 "connectors.free": {
                     "title": {
-                        "en": "Free connectors"
+                        "en": "Free",
+                        "nl": "Vrij"
                     }
                 },
                 "connectors.total": {
                     "title": {
-                        "en": "Total connectors"
-                    }
+                        "en": "Total",
+                        "nl": "Totaal"
+                    },
+                    "preventInsights": true
                 }
             },
             "mobile": {
