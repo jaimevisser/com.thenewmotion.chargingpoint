@@ -17,6 +17,10 @@
             "Elektrische auto"
         ]
     },
+    "images": {
+        "large": "/assets/images/large.png",
+        "small": "/assets/images/small.png"
+    },
     "description": {
         "en": "Support for EV charging points.",
         "nl": "Ondersteuning voor EV laadpunten"
@@ -70,6 +74,10 @@
             "name": {
                 "en": "Charge point",
                 "nl": "Laadpunt"
+            },
+            "images": {
+                "large": "/drivers/chargepoint/assets/images/large.png",
+                "small": "/drivers/chargepoint/assets/images/small.png"
             },
             "class": "other",
             "capabilities": [
