@@ -105,5 +105,37 @@
                 }
             ]
         }
-    ]
+    ],
+    "flow": {
+        "triggers": [
+            {
+                "id": "start",
+                "title": {
+                    "en": "Charging started",
+                    "nl": "Laadsessie gestart"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=chargepoint"
+                    }
+                ]
+            },
+            {
+                "id": "stop",
+                "title": {
+                    "en": "Charging stopped",
+                    "nl": "Laadsessie beëindigd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=chargepoint"
+                    }
+                ]
+            }
+        ]
+    }
 }

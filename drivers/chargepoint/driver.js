@@ -5,6 +5,25 @@ const TNM = require('../../lib/tnm')
 
 class ChargepointDriver extends Homey.Driver {
 
+    onInit() {
+        this._flowTriggerStart = new Homey.FlowCardTriggerDevice('start').register()
+        this._flowTriggerStop = new Homey.FlowCardTriggerDevice('stop').register()
+    }
+
+    triggerStart(device) {
+        this._flowTriggerStart
+            .trigger(device, {}, {})
+            .then(this.log)
+            .catch(this.error)
+    }
+
+    triggerStop(device) {
+        this._flowTriggerStop
+            .trigger(device, {}, {})
+            .then(this.log)
+            .catch(this.error)
+    }
+
     onPairListDevices(data, callback) {
 
         const Location = Homey.ManagerGeolocation

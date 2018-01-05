@@ -21,6 +21,14 @@ class Chargepoint extends Homey.Device {
 
         let connectors = data.connectors.length
         let free = data.connectors.filter((conn) => conn.status == 0).length
+        let prevfree = this.getCapabilityValue('connectors.free')
+
+        if (prevfree === null) {
+        } else if (prevfree > free) {
+            this.getDriver().triggerStart(this)
+        } else if (prevfree < free) {
+            this.getDriver().triggerStop(this)
+        }
 
         await this.setCapabilityValue('connectors.total', connectors)
         await this.setCapabilityValue('connectors.free', free)
