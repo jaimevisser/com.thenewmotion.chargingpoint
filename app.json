@@ -1,8 +1,21 @@
 {
-    "id": "com.thenewmotion.chargingpoint",
+    "id": "com.thenewmotion",
     "sdk": 2,
     "name": {
         "en": "The New Motion"
+    },
+    "tags": {
+        "en": [
+            "Charging",
+            "EV",
+            "Electric car"
+        ],
+        "nl": [
+            "Laadpaal",
+            "Laden",
+            "EV",
+            "Elektrische auto"
+        ]
     },
     "description": {
         "en": "Support for EV charging points.",
@@ -14,6 +27,13 @@
     "author": {
         "name": "Jaime Visser",
         "email": "jaimevisser@gmail.com"
+    },
+    "contributing": {
+        "donate": {
+            "paypal": {
+                "username": "jaimevisser"
+            }
+        }
     },
     "permissions": [
         "homey:manager:geolocation"
