@@ -1,0 +1,203 @@
+{
+    "id": "com.thenewmotion",
+    "sdk": 2,
+    "name": {
+        "en": "The New Motion"
+    },
+    "tags": {
+        "en": [
+            "Charging",
+            "EV",
+            "Electric car"
+        ],
+        "nl": [
+            "Laadpaal",
+            "Laden",
+            "EV",
+            "Elektrische auto"
+        ]
+    },
+    "description": {
+        "en": "Support for EV charging points.",
+        "nl": "Ondersteuning voor EV laadpunten"
+    },
+    "category": "energy",
+    "version": "0.0.1",
+    "compatibility": ">=1.5.0",
+    "author": {
+        "name": "Jaime Visser",
+        "email": "jaimevisser@gmail.com"
+    },
+    "contributing": {
+        "donate": {
+            "paypal": {
+                "username": "jaimevisser"
+            }
+        }
+    },
+    "permissions": [
+        "homey:manager:geolocation"
+    ],
+    "capabilities": {
+        "connectors": {
+            "type": "number",
+            "title": {
+                "en": "Connectors",
+                "nl": "Aansluitingen"
+            },
+            "getable": true,
+            "setable": false,
+            "units": {
+                "en": ""
+            },
+            "min": 0,
+            "max": 30,
+            "step": 1
+        },
+        "occupied": {
+            "type": "boolean",
+            "title": {
+                "en": "Occupied",
+                "nl": "Bezet"
+            },
+            "getable": true,
+            "setable": false
+        }
+    },
+    "drivers": [
+        {
+            "id": "chargepoint",
+            "name": {
+                "en": "Charge point",
+                "nl": "Laadpunt"
+            },
+            "class": "other",
+            "capabilities": [
+                "connectors.free",
+                "connectors.total"
+            ],
+            "capabilitiesOptions": {
+                "connectors.free": {
+                    "title": {
+                        "en": "Free",
+                        "nl": "Vrij"
+                    }
+                },
+                "connectors.total": {
+                    "title": {
+                        "en": "Total",
+                        "nl": "Totaal"
+                    },
+                    "preventInsights": true
+                }
+            },
+            "mobile": {
+                "components": [
+                    {
+                        "id": "icon"
+                    },
+                    {
+                        "id": "sensor",
+                        "capabilities": [
+                            "connectors.free",
+                            "connectors.total"
+                        ],
+                        "options": {
+                            "icons": {
+                                "connectors.free": "/assets/plug.svg",
+                                "connectors.total": "/assets/plug.svg"
+                            }
+                        }
+                    }
+                ]
+            },
+            "pair": [
+                {
+                    "id": "list_devices",
+                    "template": "list_devices",
+                    "navigation": {
+                        "next": "add_devices"
+                    }
+                },
+                {
+                    "id": "add_devices",
+                    "template": "add_devices"
+                }
+            ]
+        }
+    ],
+    "flow": {
+        "triggers": [
+            {
+                "id": "occupied",
+                "title": {
+                    "en": "Chargepoint occupied",
+                    "nl": "Laadpunt bezet"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=chargepoint"
+                    }
+                ]
+            },
+            {
+                "id": "free",
+                "title": {
+                    "en": "Chargepoint free",
+                    "nl": "Laadpunt vrij"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=chargepoint"
+                    }
+                ]
+            },
+            {
+                "id": "changed",
+                "title": {
+                    "en": "Charge session ended or started",
+                    "nl": "Laadsessie gestart of beëindigd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=chargepoint"
+                    }
+                ]
+            },
+            {
+                "id": "start",
+                "title": {
+                    "en": "Charge session started",
+                    "nl": "Laadsessie gestart"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=chargepoint"
+                    }
+                ]
+            },
+            {
+                "id": "stop",
+                "title": {
+                    "en": "Charge session ended",
+                    "nl": "Laadsessie beëindigd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=chargepoint"
+                    }
+                ]
+            }
+        ]
+    }
+}

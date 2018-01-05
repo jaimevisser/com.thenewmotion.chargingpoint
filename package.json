@@ -1,0 +1,25 @@
+{
+    "name": "thenewmotion-chargingpoint",
+    "version": "0.0.1",
+    "dependencies": {
+        "got": "^8.0.1",
+        "new-point-haversine": "0.0.7"
+    },
+    "description": "Support for EV charging points.",
+    "main": "app.js",
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jaimevisser/com.thenewmotion.chargingpoint.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jaimevisser/com.thenewmotion.chargingpoint/issues"
+    },
+    "homepage": "https://github.com/jaimevisser/com.thenewmotion.chargingpoint#readme"
+}
