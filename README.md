@@ -9,12 +9,13 @@ Adds support for EV charging points.
 Add a new device for your charging point. The app uses your Homeys location to find the nearest charging points. For now this is in a fixed 1km square around Homeys location.
 
 ## Usage
-* In the flow editor, a UniFi Camera action card can be used to create a snapshot, which is is saved to an Image tag.
-* A flow can also be triggered when a snapshot is created using the UniFi Video application card. This card supplies the name of the camera that created the snapshot and the snapshot image itself.
+* In the flow editor use the triggers to start a flow when someone starts/stops charging or when there are free connectors.
+* Use the "Free" connectors tag to check the number of free connectors.
 
 ## Supported devices
 * All charging points on https://my.thenewmotion.com. Special icons for:
     * The New Motion LoLo
+    * ICU EVE with two connectors
     * EV-Box
 
 ## Changelog
