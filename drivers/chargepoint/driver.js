@@ -52,7 +52,7 @@ class ChargepointDriver extends Homey.Driver {
 
         const Location = Homey.ManagerGeolocation
 
-        TNM.near(Location.getLatitude(), Location.getLongitude(), 1)
+        TNM.near(Location.getLatitude(), Location.getLongitude(), 1000)
             .then(function (points) {
                 let devices = points.map((point) => {
                     let icon = "icon.svg"
