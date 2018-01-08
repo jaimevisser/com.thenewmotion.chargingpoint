@@ -1,8 +1,8 @@
 # The New Motion
 Adds support for EV charging points.
 
-This app is sponsored by
-!(http://www.hightechict.nl/wp-content/uploads/2013/04/logo-HT-ICT.png)
+Time to develop this app was donated by
+![alt text](http://www.hightechict.nl/wp-content/uploads/2013/04/logo-HT-ICT.png)
 
 ## What's new?
 * Available power shown
