@@ -46,6 +46,8 @@ class Chargepoint extends Homey.Device {
                 , 0)
         }
 
+        const price = data.connectors.reduce((acc, conn) => max(acc, conn.price.perKWh), 0)
+
         if (prevfree === null) {
         } else if (prevfree !== free) {
             if (prevfree > free) {
@@ -66,6 +68,7 @@ class Chargepoint extends Homey.Device {
         if (this.hasCapability('connectors.total')) await this.setCapabilityValue('connectors.total', connectors)
         if (this.hasCapability('connectors.free')) await this.setCapabilityValue('connectors.free', free)
         if (this.hasCapability('power.max')) await this.setCapabilityValue('power.max', power)
+        if (this.hasCapability('price')) await this.setCapabilityValue('price', price)
     }
 }
 

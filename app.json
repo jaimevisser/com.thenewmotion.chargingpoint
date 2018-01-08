@@ -80,6 +80,20 @@
             },
             "min": 0,
             "max": 1000
+        },
+        "price": {
+            "type": "number",
+            "title": {
+                "en": "Price",
+                "nl": "Prijs"
+            },
+            "getable": true,
+            "setable": false,
+            "units": {
+                "en": "€/kWh"
+            },
+            "min": 0,
+            "max": 1000
         }
     },
     "drivers": [
@@ -97,7 +111,8 @@
             "capabilities": [
                 "connectors.free",
                 "connectors.total",
-                "power.max"
+                "power.max",
+                "price"
             ],
             "capabilitiesOptions": {
                 "connectors.free": {
@@ -130,13 +145,15 @@
                         "capabilities": [
                             "connectors.free",
                             "connectors.total",
-                            "power.max"
+                            "power.max",
+                            "price"
                         ],
                         "options": {
                             "icons": {
                                 "connectors.free": "/assets/plug/type2.svg",
                                 "connectors.total": "/assets/plug/type2.svg",
-                                "power.max": "/assets/power.svg"
+                                "power.max": "/assets/power.svg",
+                                "price": "/assets/euro.svg"
                             }
                         }
                     }

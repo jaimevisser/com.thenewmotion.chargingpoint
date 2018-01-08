@@ -6,6 +6,7 @@ Time to develop this app was donated by
 
 ## What's new?
 * Available power shown
+* Price shown
 
 ## Getting started
 Add a new device for your charging point. The app uses your Homeys location to find the nearest charging points. For now this is in a fixed 1km square around Homeys location.
@@ -23,8 +24,9 @@ Add a new device for your charging point. The app uses your Homeys location to f
 ## Changelog
 
 ### 0.0.3
-Available power shown
-Less dependencies in node_modules
+* Available power shown
+* Price shown
+* Less dependencies in node_modules
 
 ### 0.0.2
 Fix node modules
