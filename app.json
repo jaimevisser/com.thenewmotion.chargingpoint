@@ -1,9 +1,26 @@
 {
     "id": "com.thenewmotion",
-    "sdk": 2,
     "name": {
         "en": "The New Motion"
     },
+    "sdk": 2,
+    "version": "0.0.3",
+    "compatibility": ">=1.5.0",
+    "permissions": [
+        "homey:manager:geolocation"
+    ],
+    "author": {
+        "name": "Jaime Visser",
+        "email": "jaimevisser@gmail.com"
+    },
+    "contributing": {
+        "donate": {
+            "paypal": {
+                "username": "jaimevisser"
+            }
+        }
+    },
+    "category": "energy",
     "tags": {
         "en": [
             "Charging",
@@ -25,23 +42,6 @@
         "en": "Support for EV charging points.",
         "nl": "Ondersteuning voor EV laadpunten"
     },
-    "category": "energy",
-    "version": "0.0.1",
-    "compatibility": ">=1.5.0",
-    "author": {
-        "name": "Jaime Visser",
-        "email": "jaimevisser@gmail.com"
-    },
-    "contributing": {
-        "donate": {
-            "paypal": {
-                "username": "jaimevisser"
-            }
-        }
-    },
-    "permissions": [
-        "homey:manager:geolocation"
-    ],
     "capabilities": {
         "connectors": {
             "type": "number",
