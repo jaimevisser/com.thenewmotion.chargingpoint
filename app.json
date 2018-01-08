@@ -66,6 +66,20 @@
             },
             "getable": true,
             "setable": false
+        },
+        "power": {
+            "type": "number",
+            "title": {
+                "en": "Power",
+                "nl": "Vermogen"
+            },
+            "getable": true,
+            "setable": false,
+            "units": {
+                "en": "kW"
+            },
+            "min": 0,
+            "max": 1000
         }
     },
     "drivers": [
@@ -82,7 +96,8 @@
             "class": "other",
             "capabilities": [
                 "connectors.free",
-                "connectors.total"
+                "connectors.total",
+                "power.max"
             ],
             "capabilitiesOptions": {
                 "connectors.free": {
@@ -97,6 +112,12 @@
                         "nl": "Totaal"
                     },
                     "preventInsights": true
+                },
+                "power.max": {
+                    "title": {
+                        "en": "Power available",
+                        "nl": "Vermogen beschikbaar"
+                    }
                 }
             },
             "mobile": {
@@ -108,12 +129,14 @@
                         "id": "sensor",
                         "capabilities": [
                             "connectors.free",
-                            "connectors.total"
+                            "connectors.total",
+                            "power.max"
                         ],
                         "options": {
                             "icons": {
                                 "connectors.free": "/assets/plug.svg",
-                                "connectors.total": "/assets/plug.svg"
+                                "connectors.total": "/assets/plug.svg",
+                                "power.max": "/assets/power.svg"
                             }
                         }
                     }

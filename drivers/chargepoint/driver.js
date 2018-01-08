@@ -52,7 +52,7 @@ class ChargepointDriver extends Homey.Driver {
 
         const Location = Homey.ManagerGeolocation
 
-        TNM.near(Location.getLatitude(), Location.getLongitude(), 1000)
+        TNM.near(Location.getLatitude(), Location.getLongitude(), 5000)
             .then(function (points) {
                 let devices = points.map((point) => {
                     let icon = "icon.svg"
@@ -61,11 +61,14 @@ class ChargepointDriver extends Homey.Driver {
                     if (point.serial.startsWith("EVB-P")) icon = "evbox.svg"
                     if (point.serial.startsWith("ICUEVE") && point.connectors.length == 2) icon = "icueve2.svg"
 
-                    return {
+                    let dev = {
                         name: point.address.trim() + ", " + point.city.trim() + " (" + point.provider.trim() + ")",
-                        data: point,
+                        data: { id: point.id },
+                        store: { cache: point },
                         icon: icon
                     }
+
+                    return dev
                 })
 
                 callback(null, devices)

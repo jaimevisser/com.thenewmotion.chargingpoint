@@ -2,6 +2,10 @@
 
 const Homey = require('homey')
 const TNM = require('../../lib/tnm')
+const max = Math.max
+const round = Math.round
+
+const freeconnectors = (data) => data.connectors.filter((conn) => conn.status == 0).length
 
 class Chargepoint extends Homey.Device {
     async onInit() {
@@ -22,12 +26,25 @@ class Chargepoint extends Homey.Device {
     }
 
     async updateDevice() {
-        let id = this.getData().id
-        let data = await TNM(id)
+        const id = this.getData().id
+        const data = await TNM(id)
+        const cache = this.getStoreValue('cache')
+        await this.setStoreValue('cache', data)
 
-        let connectors = data.connectors.length
-        let free = data.connectors.filter((conn) => conn.status == 0).length
-        let prevfree = this.getCapabilityValue('connectors.free')
+        const connectors = data.connectors.length
+        const free = freeconnectors(data)
+        const prevfree = freeconnectors(cache)
+        let power = 0
+
+        if (free > 0) {
+            let filtered = data.connectors.filter(
+                (conn) => conn.status == 0
+            )
+
+            power = filtered.reduce(
+                (acc, conn) => max(acc, round((conn.power.phase * conn.power.voltage * conn.power.amperage) / 100) / 10)
+                , 0)
+        }
 
         if (prevfree === null) {
         } else if (prevfree !== free) {
@@ -46,10 +63,9 @@ class Chargepoint extends Homey.Device {
             }
         }
 
-
-
         if (this.hasCapability('connectors.total')) await this.setCapabilityValue('connectors.total', connectors)
         if (this.hasCapability('connectors.free')) await this.setCapabilityValue('connectors.free', free)
+        if (this.hasCapability('power.max')) await this.setCapabilityValue('power.max', power)
     }
 }
 

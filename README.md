@@ -3,7 +3,7 @@
 Adds support for EV charging points.
 
 ## What's new?
-* Everything; this is the initial release!
+* Available power shown
 
 ## Getting started
 Add a new device for your charging point. The app uses your Homeys location to find the nearest charging points. For now this is in a fixed 1km square around Homeys location.
@@ -19,6 +19,13 @@ Add a new device for your charging point. The app uses your Homeys location to f
     * EV-Box
 
 ## Changelog
+
+### 0.0.3
+Available power shown
+Less dependencies in node_modules
+
+### 0.0.2
+Fix node modules
 
 ### 0.0.1 Very first beta release
 Beta release
