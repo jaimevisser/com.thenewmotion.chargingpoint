@@ -3,6 +3,66 @@
 const Homey = require('homey')
 const TNM = require('../../lib/tnm')
 
+function capabilities() {
+    return [
+        "connectors.free",
+        "connectors.total",
+        "power.max",
+        "price"
+    ]
+}
+
+function capabilitiesOptions() {
+    return {
+        "connectors.free": {
+            "title": {
+                "en": "Free",
+                "nl": "Vrij"
+            }
+        },
+        "connectors.total": {
+            "title": {
+                "en": "Total",
+                "nl": "Totaal"
+            },
+            "preventInsights": true
+        },
+        "power.max": {
+            "title": {
+                "en": "Power available",
+                "nl": "Vermogen beschikbaar"
+            }
+        }
+    }
+}
+
+function mobile() {
+    return {
+        "components": [
+            {
+                "id": "icon"
+            },
+            {
+                "id": "sensor",
+                "capabilities": [
+                    "connectors.free",
+                    "connectors.total",
+                    "power.max",
+                    "price"
+                ],
+                "options": {
+                    "icons": {
+                        "connectors.free": "/assets/plug/type2.svg",
+                        "connectors.total": "/assets/plug/type2.svg",
+                        "power.max": "/assets/power.svg",
+                        "price": "/assets/euro.svg"
+                    }
+                }
+            }
+        ]
+    }
+}
+
 class ChargepointDriver extends Homey.Driver {
 
     onInit() {
@@ -49,12 +109,11 @@ class ChargepointDriver extends Homey.Driver {
     }
 
     onPairListDevices(data, callback) {
-
         const Location = Homey.ManagerGeolocation
 
         TNM.near(Location.getLatitude(), Location.getLongitude(), 5000)
             .then(function (points) {
-                let devices = points.map((point) => {
+                const devices = points.map((point) => {
                     let icon = "icon.svg"
 
                     if (point.provider == "NewMotion" && point.connectors.length == 1) icon = "lolo.svg"
@@ -65,7 +124,10 @@ class ChargepointDriver extends Homey.Driver {
                         name: point.address.trim() + ", " + point.city.trim() + " (" + point.provider.trim() + ")",
                         data: { id: point.id },
                         store: { cache: point },
-                        icon: icon
+                        icon: icon,
+                        capabilities: capabilities(),
+                        capabilitiesOptions: capabilitiesOptions(),
+                        mobile: mobile()
                     }
 
                     return dev
