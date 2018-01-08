@@ -2,7 +2,7 @@
 Adds support for EV charging points.
 
 Time to develop this app was donated by
-![alt text](http://www.hightechict.nl/wp-content/uploads/2013/04/logo-HT-ICT.png)
+![Hightech ICT](http://www.hightechict.nl/wp-content/uploads/2013/04/logo-HT-ICT.png)
 
 ## What's new?
 * Available power shown
