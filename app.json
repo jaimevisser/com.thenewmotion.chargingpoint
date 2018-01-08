@@ -134,8 +134,8 @@
                         ],
                         "options": {
                             "icons": {
-                                "connectors.free": "/assets/plug.svg",
-                                "connectors.total": "/assets/plug.svg",
+                                "connectors.free": "/assets/plug/type2.svg",
+                                "connectors.total": "/assets/plug/type2.svg",
                                 "power.max": "/assets/power.svg"
                             }
                         }
