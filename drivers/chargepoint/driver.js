@@ -2,6 +2,7 @@
 
 const Homey = require('homey')
 const TNM = require('../../lib/tnm')
+const CP = require('./chargepoint')
 
 function capabilities() {
     return [
@@ -111,26 +112,19 @@ class ChargepointDriver extends Homey.Driver {
     onPairListDevices(data, callback) {
         const Location = Homey.ManagerGeolocation
 
-        TNM.near(Location.getLatitude(), Location.getLongitude(), 5000)
+        TNM.near(Location.getLatitude(), Location.getLongitude(), 10000)
             .then(function (points) {
                 const devices = points.map((point) => {
-                    let icon = "icon.svg"
+                    point = CP.enhance(point)
 
-                    if (point.provider == "NewMotion" && point.connectors.length == 1) icon = "lolo.svg"
-                    if (point.serial.startsWith("EVB-P")) icon = "evbox.svg"
-                    if (point.serial.startsWith("ICUEVE") && point.connectors.length == 2) icon = "icueve2.svg"
-
-                    let dev = {
+                    return CP.buildDevice({
                         name: point.address.trim() + ", " + point.city.trim() + " (" + point.provider.trim() + ")",
                         data: { id: point.id },
                         store: { cache: point },
-                        icon: icon,
                         capabilities: capabilities(),
                         capabilitiesOptions: capabilitiesOptions(),
                         mobile: mobile()
-                    }
-
-                    return dev
+                    }, point)
                 })
 
                 callback(null, devices)
