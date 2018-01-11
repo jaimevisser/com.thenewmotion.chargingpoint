@@ -52,6 +52,60 @@ module.exports.buildDevice = function (device, point) {
 
     device.icon = icon(point)
 
+    device.capabilities = [
+        "connectors.free",
+        "connectors.total",
+        "power.max",
+        "price"
+    ]
+
+    device.capabilitiesOptions = {
+        "connectors.free": {
+            "title": {
+                "en": "Free",
+                "nl": "Vrij"
+            }
+        },
+        "connectors.total": {
+            "title": {
+                "en": "Total",
+                "nl": "Totaal"
+            },
+            "preventInsights": true
+        },
+        "power.max": {
+            "title": {
+                "en": "Power available",
+                "nl": "Vermogen beschikbaar"
+            }
+        }
+    }
+
+    device.mobile = {
+        "components": [
+            {
+                "id": "icon"
+            },
+            {
+                "id": "sensor",
+                "capabilities": [
+                    "connectors.free",
+                    "connectors.total",
+                    "power.max",
+                    "price"
+                ],
+                "options": {
+                    "icons": {
+                        "connectors.free": "/assets/plug/type2.svg",
+                        "connectors.total": "/assets/plug/type2.svg",
+                        "power.max": "/assets/power.svg",
+                        "price": "/assets/euro.svg"
+                    }
+                }
+            }
+        ]
+    }
+
     return device
 }
 

@@ -4,39 +4,6 @@ const Homey = require('homey')
 const TNM = require('../../lib/tnm')
 const CP = require('./chargepoint')
 
-function capabilities() {
-    return [
-        "connectors.free",
-        "connectors.total",
-        "power.max",
-        "price"
-    ]
-}
-
-function capabilitiesOptions() {
-    return {
-        "connectors.free": {
-            "title": {
-                "en": "Free",
-                "nl": "Vrij"
-            }
-        },
-        "connectors.total": {
-            "title": {
-                "en": "Total",
-                "nl": "Totaal"
-            },
-            "preventInsights": true
-        },
-        "power.max": {
-            "title": {
-                "en": "Power available",
-                "nl": "Vermogen beschikbaar"
-            }
-        }
-    }
-}
-
 function mobile() {
     return {
         "components": [
@@ -121,8 +88,6 @@ class ChargepointDriver extends Homey.Driver {
                         name: point.address.trim() + ", " + point.city.trim() + " (" + point.provider.trim() + ")",
                         data: { id: point.id },
                         store: { cache: point },
-                        capabilities: capabilities(),
-                        capabilitiesOptions: capabilitiesOptions(),
                         mobile: mobile()
                     }, point)
                 })
