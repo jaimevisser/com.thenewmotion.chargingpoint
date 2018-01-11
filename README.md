@@ -1,5 +1,5 @@
 # The New Motion
-Unofficial app for The New Motion. Adds support for EV charging points found on my.thenewmotion.com.
+Unofficial app for The New Motion. Adds support for EV charging points found on https://my.thenewmotion.com.
 
 Time to develop this app was donated by
 ![Hightech ICT](http://www.hightechict.nl/wp-content/uploads/2013/04/logo-HT-ICT.png)
