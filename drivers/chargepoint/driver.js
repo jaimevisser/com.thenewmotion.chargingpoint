@@ -5,30 +5,7 @@ const TNM = require('../../lib/tnm')
 const CP = require('./chargepoint')
 
 function mobile() {
-    return {
-        "components": [
-            {
-                "id": "icon"
-            },
-            {
-                "id": "sensor",
-                "capabilities": [
-                    "connectors.free",
-                    "connectors.total",
-                    "power.max",
-                    "price"
-                ],
-                "options": {
-                    "icons": {
-                        "connectors.free": "/assets/plug/type2.svg",
-                        "connectors.total": "/assets/plug/type2.svg",
-                        "power.max": "/assets/power.svg",
-                        "price": "/assets/euro.svg"
-                    }
-                }
-            }
-        ]
-    }
+    return
 }
 
 class ChargepointDriver extends Homey.Driver {
@@ -79,7 +56,7 @@ class ChargepointDriver extends Homey.Driver {
     onPairListDevices(data, callback) {
         const Location = Homey.ManagerGeolocation
 
-        TNM.near(Location.getLatitude(), Location.getLongitude(), 10000)
+        TNM.near(Location.getLatitude(), Location.getLongitude(), 2000)
             .then(function (points) {
                 const devices = points.map((point) => {
                     point = CP.enhance(point)

@@ -32,7 +32,7 @@ class Chargepoint extends Homey.Device {
 
         if (prev.e.free !== null && prev.e.free !== data.e.free) {
             this.getDriver().triggerChanged(this)
-            
+
             if (prev.e.free > data.e.free) {
                 this.getDriver().triggerStart(this)
             } else if (prev.e.free < free) {
@@ -46,6 +46,7 @@ class Chargepoint extends Homey.Device {
             }
         }
 
+        this.setIfHasCapability('occupied', (data.e.free == 0))
         this.setIfHasCapability('connectors.total', data.e.total)
         this.setIfHasCapability('connectors.free', data.e.free)
         this.setIfHasCapability('power.max', data.e.availablepower)
