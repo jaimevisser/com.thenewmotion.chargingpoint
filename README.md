@@ -5,8 +5,8 @@ Time to develop this app was donated by
 ![Hightech ICT](http://www.hightechict.nl/wp-content/uploads/2013/04/logo-HT-ICT.png)
 
 ## What's new?
-* Available power shown
-* Price shown
+* Stable release
+* Single connector points have a simpler mobile card
 
 ## Getting started
 Add a new device for your charging point. The app uses your Homeys location to find the nearest charging points. For now this is in a fixed 1km square around Homeys location.
@@ -23,6 +23,14 @@ Add a new device for your charging point. The app uses your Homeys location to f
     * Public chargers (22kw, two connectors)
 
 ## Changelog
+
+### 1.0.0
+* Stable release
+* Single connector points have a simpler mobile card
+
+### 0.0.4
+* Image for 22kw public chargers
+* Refactoring and bugfixes
 
 ### 0.0.3
 * Available power shown
