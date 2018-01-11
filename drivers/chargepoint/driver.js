@@ -56,13 +56,13 @@ class ChargepointDriver extends Homey.Driver {
     onPairListDevices(data, callback) {
         const Location = Homey.ManagerGeolocation
 
-        TNM.near(Location.getLatitude(), Location.getLongitude(), 2000)
+        TNM.near(Location.getLatitude(), Location.getLongitude(), 10000)
             .then(function (points) {
                 const devices = points.map((point) => {
                     point = CP.enhance(point)
 
                     return CP.buildDevice({
-                        name: point.address.trim() + ", " + point.city.trim() + " (" + point.provider.trim() + ")",
+                        name: point.address.trim() + ', ' + point.city.trim() + ' (' + point.provider.trim() + ')',
                         data: { id: point.id },
                         store: { cache: point },
                         mobile: mobile()

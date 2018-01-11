@@ -52,70 +52,72 @@ module.exports.buildDevice = function (device, point) {
 
     device.icon = module.exports.icon(point)
 
+    const firstplug = '/drivers/chargepoint/assets/plug/' + point.e.types[0].toLowerCase() + '.svg'
+
     device.capabilities = []
     device.capabilitiesOptions = {}
     device.mobile = {
-        "components": [
+        'components': [
             {
-                "id": "icon"
+                'id': 'icon'
             },
             {
-                "id": "sensor",
-                "capabilities": [],
-                "options": {
-                    "icons": {}
+                'id': 'sensor',
+                'capabilities': [],
+                'options': {
+                    'icons': {}
                 }
             }
         ]
     }
 
     if (point.connectors.length == 1) {
-        device.capabilities.push("occupied")
+        device.capabilities.push('occupied')
 
-        device.mobile.components[1].capabilities.push("occupied")
-        device.mobile.components[1].options.icons["occupied"] = "/assets/plug/type2.svg";
+        device.mobile.components[1].capabilities.push('occupied')
+        device.mobile.components[1].options.icons['occupied'] = firstplug
 
     } else {
-        device.capabilities.push("connectors.free")
-        device.capabilities.push("connectors.total")
+        device.capabilities.push('connectors.free')
+        device.capabilities.push('connectors.total')
 
-        device.capabilitiesOptions["connectors.free"] = {
-            "title": {
-                "en": "Free",
-                "nl": "Vrij"
+        device.capabilitiesOptions['connectors.free'] = {
+            'title': {
+                'en': 'Free',
+                'nl': 'Vrij'
             }
         }
 
-        device.capabilitiesOptions["connectors.total"] = {
-            "title": {
-                "en": "Total",
-                "nl": "Totaal"
+        device.capabilitiesOptions['connectors.total'] = {
+            'title': {
+                'en': 'Total',
+                'nl': 'Totaal'
             },
-            "preventInsights": true
+            'preventInsights': true
         }
 
-        device.mobile.components[1].capabilities.push("connectors.free")
-        device.mobile.components[1].capabilities.push("connectors.total")
+        device.mobile.components[1].capabilities.push('connectors.free')
+        device.mobile.components[1].capabilities.push('connectors.total')
 
-        device.mobile.components[1].options.icons["connectors.free"] = "/assets/plug/type2.svg";
-        device.mobile.components[1].options.icons["connectors.total"] = "/assets/plug/type2.svg";
+        device.mobile.components[1].options.icons['connectors.free'] = firstplug
+        device.mobile.components[1].options.icons['connectors.total'] = firstplug
     }
 
-    device.capabilities.push("power.max")
-    device.capabilities.push("price")
+    device.capabilities.push('power.max')
+    device.capabilities.push('price')
 
-    device.capabilitiesOptions["power.max"] = {
-        "title": {
-            "en": "Power available",
-            "nl": "Vermogen beschikbaar"
+    device.capabilitiesOptions['power.max'] = {
+        'title': {
+            'en': 'Power available',
+            'nl': 'Vermogen beschikbaar'
         }
     }
 
-    device.mobile.components[1].capabilities.push("power.max")
-    device.mobile.components[1].capabilities.push("price")
+    device.mobile.components[1].capabilities.push('power.max')
+    device.mobile.components[1].capabilities.push('price')
 
-    device.mobile.components[1].options.icons["power.max"] = "/assets/power.svg";
-    device.mobile.components[1].options.icons["price"] = "/assets/euro.svg";
+    device.mobile.components[1].options.icons['power.max'] = '/assets/power.svg';
+    device.mobile.components[1].options.icons['price'] = '/assets/euro.svg';
 
     return device
 }
