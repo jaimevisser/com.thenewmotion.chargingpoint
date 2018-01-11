@@ -4,7 +4,7 @@
         "en": "The New Motion"
     },
     "sdk": 2,
-    "version": "0.0.3",
+    "version": "0.0.4",
     "compatibility": ">=1.5.0",
     "permissions": [
         "homey:manager:geolocation"
@@ -108,57 +108,7 @@
                 "small": "/drivers/chargepoint/assets/images/small.png"
             },
             "class": "other",
-            "capabilities": [
-                "connectors.free",
-                "connectors.total",
-                "power.max",
-                "price"
-            ],
-            "capabilitiesOptions": {
-                "connectors.free": {
-                    "title": {
-                        "en": "Free",
-                        "nl": "Vrij"
-                    }
-                },
-                "connectors.total": {
-                    "title": {
-                        "en": "Total",
-                        "nl": "Totaal"
-                    },
-                    "preventInsights": true
-                },
-                "power.max": {
-                    "title": {
-                        "en": "Power available",
-                        "nl": "Vermogen beschikbaar"
-                    }
-                }
-            },
-            "mobile": {
-                "components": [
-                    {
-                        "id": "icon"
-                    },
-                    {
-                        "id": "sensor",
-                        "capabilities": [
-                            "connectors.free",
-                            "connectors.total",
-                            "power.max",
-                            "price"
-                        ],
-                        "options": {
-                            "icons": {
-                                "connectors.free": "/assets/plug/type2.svg",
-                                "connectors.total": "/assets/plug/type2.svg",
-                                "power.max": "/assets/power.svg",
-                                "price": "/assets/euro.svg"
-                            }
-                        }
-                    }
-                ]
-            },
+            "capabilities": [],
             "pair": [
                 {
                     "id": "list_devices",

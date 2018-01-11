@@ -2,8 +2,7 @@
 
 const Homey = require('homey')
 const TNM = require('../../lib/tnm')
-const max = Math.max
-const round = Math.round
+const CP = require('./chargepoint')
 
 const freeconnectors = (data) => data.connectors.filter((conn) => conn.status == 0).length
 
@@ -27,48 +26,37 @@ class Chargepoint extends Homey.Device {
 
     async updateDevice() {
         const id = this.getData().id
-        const data = await TNM(id)
-        const cache = this.getStoreValue('cache')
+        const data = CP.enhance(await TNM(id))
+        const prev = this.getStoreValue('cache')
         await this.setStoreValue('cache', data)
 
-        const connectors = data.connectors.length
-        const free = freeconnectors(data)
-        const prevfree = freeconnectors(cache)
-        let power = 0
+        if (prev.e.free !== null && prev.e.free !== data.e.free) {
+            this.getDriver().triggerChanged(this)
 
-        if (free > 0) {
-            let filtered = data.connectors.filter(
-                (conn) => conn.status == 0
-            )
-
-            power = filtered.reduce(
-                (acc, conn) => max(acc, round((conn.power.phase * conn.power.voltage * conn.power.amperage) / 100) / 10)
-                , 0)
-        }
-
-        const price = data.connectors.reduce((acc, conn) => max(acc, conn.price.perKWh), 0)
-
-        if (prevfree === null) {
-        } else if (prevfree !== free) {
-            if (prevfree > free) {
+            if (prev.e.free > data.e.free) {
                 this.getDriver().triggerStart(this)
-                this.getDriver().triggerChanged(this)
-            } else if (prevfree < free) {
+            } else if (prev.e.free < free) {
                 this.getDriver().triggerStop(this)
-                this.getDriver().triggerChanged(this)
             }
 
-            if (free == 0) {
+            if (data.e.free == 0) {
                 this.getDriver().triggerOccupied(this)
-            } else if (free > 0) {
+            } else if (data.e.free > 0) {
                 this.getDriver().triggerFree(this)
             }
         }
 
-        if (this.hasCapability('connectors.total')) await this.setCapabilityValue('connectors.total', connectors)
-        if (this.hasCapability('connectors.free')) await this.setCapabilityValue('connectors.free', free)
-        if (this.hasCapability('power.max')) await this.setCapabilityValue('power.max', power)
-        if (this.hasCapability('price')) await this.setCapabilityValue('price', price)
+        this.setIfHasCapability('occupied', (data.e.free == 0))
+        this.setIfHasCapability('connectors.total', data.e.total)
+        this.setIfHasCapability('connectors.free', data.e.free)
+        this.setIfHasCapability('power.max', data.e.availablepower)
+        this.setIfHasCapability('price', data.e.price)
+    }
+
+    setIfHasCapability(cap, value) {
+        if (this.hasCapability(cap)) {
+            return this.setCapabilityValue(cap, value)
+        }
     }
 }
 
